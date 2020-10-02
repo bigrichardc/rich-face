@@ -1,0 +1,81 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+
+.social-card__container {
+    display: flex;
+    
+    align-content: flex-start;
+    
+}
+
+@media only screen and (max-width: 768px) {
+    .social-card__container {
+        flex-direction: column; 
+    }
+}
+
+@media only screen and (min-width: 769px) {
+    .social-card__container {
+        flex-direction: row;
+        flex-wrap: wrap;
+
+    }
+
+}
+
+.social-card__column {
+    padding: 2vw;
+}
+
+.social-card {
+    border-radius: 20px;
+    border: solid black;
+    background-color: black;
+    color:whitesmoke;
+    padding: 20px;
+    max-width: 44vw;
+    margin: 2vh auto;
+    font-family: 'Poppins';
+}
+
+@media only screen and (min-width: 769px) {
+    
+    .social-card:last-child {
+        margin: 2vh;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .social-card {
+        max-width: 80vw;
+    }
+}
+
+.social-card__user-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 2vw;
+}
+
+.social-card__user-post {
+    align-items: flex-start;
+}
+
+.social-card__avatar-image {
+    align-self: flex-start;
+    border-radius: 5%;
+    height: 10vmin;
+
+}
+
+.social-card__title {
+    display: block;
+}
+
+.social-card__user-post-details {
+    min-height: 30vh;
+}
+
+.social-card__post-image {
+    max-width: 98%;
+}
