@@ -1,0 +1,26 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+
+.comment-form__container {
+  display: block;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  /*flex-direction: column;*/
+  width: 100%;
+  border: solid white;
+}
+
+.comment-form__form {
+  padding: 2%;
+}
+
+.comment-form__textarea {
+  width: 96%;
+  padding: 2%;
+  resize: none;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.comments__container {
+  padding: 2%;
+  font-size: 0.8em;
+}
