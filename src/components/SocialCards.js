@@ -8,7 +8,7 @@ function PostImage({ image }) {
   if (!image) {
     return null;
   }
-  return <img className="social-card__post-image" src={image} />;
+  return <img alt="" className="social-card__post-image" src={image} />;
 }
 
 const SocialCard = ({ postId, postTitle, postText, userName, postImage }) => {
@@ -18,7 +18,7 @@ const SocialCard = ({ postId, postTitle, postText, userName, postImage }) => {
       <p>12/06/1971 10.23pm</p>
       <div className="social-card__user-post">
         <div className="social-card__user-details">
-          <img src="/src/data/avatar.png" className="social-card__avatar-image" />
+          <img alt="" src="/src/data/avatar.png" className="social-card__avatar-image" />
           <h3 className="social-card__username">{userName}</h3>
         </div>
         <div className="social-card__user-post-details">
@@ -36,7 +36,7 @@ const SocialCard = ({ postId, postTitle, postText, userName, postImage }) => {
 const SocialCards = ({ blogposts = [], isLoading, startLoadingBlogPosts }) => {
   useEffect(() => {
     startLoadingBlogPosts();
-  }, []);
+  }, [startLoadingBlogPosts]);
 
   const loadingMessage = <div>Loading posts...</div>;
 
