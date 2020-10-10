@@ -8,8 +8,8 @@ const { Pool } = require('pg');
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
-    rejectUnauthorized: false
-  }
+    rejectUnauthorized: false,
+  },
 });
 
 const app = express();
@@ -18,20 +18,19 @@ app.use(favicon(__dirname + '/build/favicon.ico'));
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'build')));
 app.get('/ping', function (req, res) {
- return res.send('pong');
+  return res.send('pong');
 });
 
 app.get('/dbtest', async (req, res) => {
   try {
     const client = await pool.connect();
     const result = await client.query('Select * FROM test_table');
-    const results = { 'results': (result) ? result.rows : null};
+    const results = { results: result ? result.rows : null };
     res.send(results);
     client.release();
-  } 
-  catch (err) {
+  } catch (err) {
     console.error(err);
-    res.send("Error " + err);
+    res.send('Error ' + err);
   }
 });
 
@@ -39,3 +38,4 @@ app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 app.listen(port);
+console.log('Listening on ' + port);

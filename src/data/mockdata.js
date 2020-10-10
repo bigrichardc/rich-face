@@ -62,16 +62,19 @@ export const comments = {
       commentId: 1,
       postId: 1,
       commentText: 'this is a comment',
+      commentAuthor: 'richard',
     },
     {
       commentId: 2,
       postId: 1,
       commentText: 'this is another comment',
+      commentAuthor: 'richard',
     },
     {
       commentId: 3,
       postId: 3,
       commentText: 'this is another comment',
+      commentAuthor: 'the author',
     },
   ],
 };

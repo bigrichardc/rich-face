@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import '../css/SocialCard.css';
 import CommentForm from '../components/CommentForm';
+import { loadBlogposts } from '../thunks/thunks';
 
 function PostImage({ image }) {
   if (!image) {
@@ -25,16 +27,22 @@ const SocialCard = ({ postId, postTitle, postText, userName, postImage }) => {
         </div>
       </div>
       <div className="social-card__comment-section">
-        <CommentForm />
+        <CommentForm postId={postId} />
       </div>
     </div>
   );
 };
 
-const SocialCards = ({ postList }) => {
-  return (
+const SocialCards = ({ blogposts = [], isLoading, startLoadingBlogPosts }) => {
+  useEffect(() => {
+    startLoadingBlogPosts();
+  }, []);
+
+  const loadingMessage = <div>Loading posts...</div>;
+
+  const content = (
     <div className="social-card__container">
-      {postList.map((post, id) => (
+      {blogposts.map((post, id) => (
         <SocialCard
           key={post.postId}
           postId={post.postId}
@@ -46,6 +54,15 @@ const SocialCards = ({ postList }) => {
       ))}
     </div>
   );
+  return isLoading ? loadingMessage : content;
 };
 
-export default SocialCards;
+const mapStateToProps = (state) => ({
+  blogposts: state.blogposts,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  startLoadingBlogPosts: () => dispatch(loadBlogposts()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SocialCards);
