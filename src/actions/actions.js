@@ -1,3 +1,5 @@
+// comment actions
+
 export const CREATE_BLOGPOST = 'CREATE_BLOGPOST';
 export const createBlogpost = (blogpost) => ({
   type: CREATE_BLOGPOST,
@@ -24,4 +26,34 @@ export const loadBlogpostsSuccess = (blogposts) => ({
 export const LOAD_BLOGPOSTS_FAILURE = 'LOAD_BLOGPOSTS_FAILURE';
 export const loadBlogpostsFailure = () => ({
   type: LOAD_BLOGPOSTS_FAILURE,
+});
+
+//comment actions
+
+export const CREATE_COMMENT = 'CREATE_COMMENT';
+export const createComment = (comment) => ({
+  type: CREATE_COMMENT,
+  payload: { comment },
+});
+
+export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const deleteComment = (comment) => ({
+  type: DELETE_COMMENT,
+  payload: { comment },
+});
+
+export const LOAD_COMMENTS_IN_PROGRESS = 'LOAD_COMMENTS_IN_PROGRESS';
+export const loadCommentsInProgress = () => ({
+  type: LOAD_COMMENTS_IN_PROGRESS,
+});
+
+export const LOAD_COMMENTS_SUCCESS = 'LOAD_COMMENTS_SUCCESS';
+export const loadCommentsSuccess = (comments) => ({
+  type: LOAD_COMMENTS_SUCCESS,
+  payload: { comments },
+});
+
+export const LOAD_COMMENTS_FAILURE = 'LOAD_BLOGPOSTS_FAILURE';
+export const loadCommentsFailure = () => ({
+  type: LOAD_COMMENTS_FAILURE,
 });

@@ -2,10 +2,13 @@ import {
   loadBlogpostsFailure,
   loadBlogpostsInProgress,
   loadBlogpostsSuccess,
+  loadCommentsFailure,
+  loadCommentsInProgress,
+  loadCommentsSuccess,
 } from '../actions/actions';
 
-import { posts } from '../data/mockdata.js';
-let postslist = posts.POSTS;
+import { comments } from '../data/mockdata.js';
+let commentlist = comments.COMMENTS;
 
 //for testing
 export const displayAlert = (text) => () => {
@@ -16,11 +19,38 @@ export const displayAlert = (text) => () => {
 export const loadBlogposts = () => async (dispatch, getState) => {
   try {
     dispatch(loadBlogpostsInProgress());
-    //here we will get data from db, using mock data for now
-    const blogposts = postslist;
-    dispatch(loadBlogpostsSuccess(blogposts));
+    fetch('http://localhost:4000/posts')
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.error) {
+          throw res.error;
+        }
+        const blogposts = res;
+        dispatch(loadBlogpostsSuccess(blogposts));
+      });
   } catch (err) {
     dispatch(loadBlogpostsFailure());
+    dispatch(displayAlert(err));
+  }
+};
+
+//commentThunks
+
+export const loadComments = (postId) => async (dispatch, getState) => {
+  try {
+    dispatch(loadCommentsInProgress());
+    //const comments = commentlist;
+    fetch(`http://localhost:4000/comments`)
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.error) {
+          throw res.error;
+        }
+        const comments = res;
+        dispatch(loadCommentsSuccess(comments));
+      });
+  } catch (err) {
+    dispatch(loadCommentsFailure());
     dispatch(displayAlert(err));
   }
 };

@@ -1,17 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import '../css/CommentForm.css';
 import Comment from './Comment';
-import { comments } from '../data/mockdata.js';
-
-let commentList = comments.COMMENTS;
 
 class CommentForm extends React.Component {
-  constructor(props) {
-    super(props);
-    var comments = commentList.filter((comment) => comment.postId === this.props.postId);
-    this.state = {
-      commentsList: comments,
-    };
+  componentDidMount() {
+    //add dispatch functions here like so
+    //this.props.startLoadingComments();
   }
 
   state = {
@@ -28,20 +23,20 @@ class CommentForm extends React.Component {
     e.preventDefault();
   };
 
-  CommentForm() {}
-
   render() {
     return (
       <div className="comment-form__container">
         <div className="comments__container">
           <h3>Comments</h3>
-          {this.state.commentsList.map((comment, id) => (
-            <Comment
-              postId={this.props.postId}
-              postAuthor={comment.commentAuthor}
-              postContent={comment.commentText}
-            />
-          ))}
+          {this.props.commentList
+            .filter((comment) => comment.postid == this.props.postId)
+            .map((comment, id) => (
+              <Comment
+                postId={this.props.postid}
+                postAuthor={comment.commentauthor}
+                postContent={comment.commentext}
+              />
+            ))}
         </div>
         <div className="comment-form__form">
           <form onSubmit={this.submit}>
@@ -58,4 +53,12 @@ class CommentForm extends React.Component {
   }
 }
 
-export default CommentForm;
+const mapStateToProps = (state) => ({
+  commentList: state.comments,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  // add dispatchEvents here like -- startLoadingComments: () => dispatch(loadComments),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentForm);

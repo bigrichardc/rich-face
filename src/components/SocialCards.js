@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import '../css/SocialCard.css';
 import CommentForm from '../components/CommentForm';
-import { loadBlogposts } from '../thunks/thunks';
+import { loadBlogposts, loadComments } from '../thunks/thunks';
 
 function PostImage({ image }) {
   if (!image) {
@@ -44,12 +44,12 @@ const SocialCards = ({ blogposts = [], isLoading, startLoadingBlogPosts }) => {
     <div className="social-card__container">
       {blogposts.map((post, id) => (
         <SocialCard
-          key={post.postId}
-          postId={post.postId}
-          postTitle={post.postTitle}
-          postText={post.postText}
-          userName={post.userName}
-          postImage={post.postImage}
+          key={post.postid}
+          postId={post.postid}
+          postTitle={post.posttitle}
+          postText={post.posttext}
+          userName={post.username}
+          postImage={post.postimage}
         />
       ))}
     </div>
@@ -63,6 +63,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   startLoadingBlogPosts: () => dispatch(loadBlogposts()),
+  startLoadingComments: () => dispatch(loadComments),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SocialCards);
