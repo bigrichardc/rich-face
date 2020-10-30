@@ -33,10 +33,16 @@ const SocialCard = ({ postId, postTitle, postText, userName, postImage }) => {
   );
 };
 
-const SocialCards = ({ blogposts = [], isLoading, startLoadingBlogPosts }) => {
+const SocialCards = ({
+  blogposts = [],
+  isLoading,
+  startLoadingBlogPosts,
+  startLoadingComments,
+}) => {
   useEffect(() => {
     startLoadingBlogPosts();
-  }, [startLoadingBlogPosts]);
+    startLoadingComments();
+  }, [startLoadingBlogPosts, startLoadingComments]);
 
   const loadingMessage = <div>Loading posts...</div>;
 
@@ -63,7 +69,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   startLoadingBlogPosts: () => dispatch(loadBlogposts()),
-  startLoadingComments: () => dispatch(loadComments),
+  startLoadingComments: () => dispatch(loadComments()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SocialCards);
