@@ -5,7 +5,7 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 import { Provider } from 'react-redux';
 import { configureStore } from './store/store';
 import './index.css';
-import App from './App';
+import Main from './Main';
 
 const store = configureStore();
 const persistor = persistStore(store);
@@ -13,7 +13,7 @@ const persistor = persistStore(store);
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={<div>Loading...</div>} persistor={persistor}>
-      <App />
+      <Main />
     </PersistGate>
   </Provider>,
   document.getElementById('root')
