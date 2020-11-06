@@ -39,7 +39,7 @@ class CommentForm extends React.Component {
         <div className="comments__container">
           <h3>Comments</h3>
           {this.props.commentList
-            .filter((comment) => comment.postid == this.props.postId)
+            .filter((comment) => comment.postid === this.props.postId)
             .map((comment, id) => (
               <Comment
                 postId={this.props.postid}

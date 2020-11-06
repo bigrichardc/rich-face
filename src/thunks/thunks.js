@@ -1,5 +1,7 @@
 import {
   createComment,
+  createBlogpost,
+  deleteBlogpost,
   loadBlogpostsFailure,
   loadBlogpostsInProgress,
   loadBlogpostsSuccess,
@@ -7,9 +9,6 @@ import {
   loadCommentsInProgress,
   loadCommentsSuccess,
 } from '../actions/actions';
-
-import { comments } from '../data/mockdata.js';
-let commentlist = comments.COMMENTS;
 
 //for testing
 export const displayAlert = (text) => () => {
@@ -31,6 +30,44 @@ export const loadBlogposts = () => async (dispatch, getState) => {
       });
   } catch (err) {
     dispatch(loadBlogpostsFailure());
+    dispatch(displayAlert(err));
+  }
+};
+
+export const addBlogpost = (blogpost) => async (dispatch) => {
+  try {
+    const body = JSON.stringify({ blogpost });
+    const response = await fetch('http://localhost:4000/posts', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'post',
+      body,
+    });
+    console.log(body);
+    const result = await response.body;
+    console.log(result);
+    dispatch(createBlogpost(blogpost));
+  } catch (err) {
+    console.log(err);
+    dispatch(displayAlert(err));
+  }
+};
+
+export const deleteBlogpostThunk = (blogpost) => async (dispatch) => {
+  try {
+    const deleteUrl = 'http://localhost:4000/posts/' + blogpost.postid;
+    const response = await fetch(deleteUrl, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'delete',
+    });
+    const result = await response.body;
+    console.log(result);
+    dispatch(deleteBlogpost(blogpost));
+  } catch (err) {
+    console.log(err);
     dispatch(displayAlert(err));
   }
 };

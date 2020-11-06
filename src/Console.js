@@ -1,21 +1,27 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import BlogpostForm from './components/BlogpostForm';
+import BlogpostList from './components/BlogpostList';
+import { setA11yMessage } from './actions/actions';
 
 class Console extends Component {
+  componentDidMount() {
+    this.props.setAria('Navigated to console page');
+  }
   render() {
     return (
       <div>
-        <h2>Adding, editing and deleting blog posts happens here</h2>
-        <p>Mauris sem velit, vehicula eget sodales vitae, rhoncus eget sapien:</p>
-        <ol>
-          <li>Nulla pulvinar diam</li>
-          <li>Facilisis bibendum</li>
-          <li>Vestibulum vulputate</li>
-          <li>Eget erat</li>
-          <li>Id porttitor</li>
-        </ol>
+        <BlogpostForm />
+        <BlogpostList />
       </div>
     );
   }
 }
 
-export default Console;
+const mapDispatchToProps = (dispatch) => ({
+  setAria: (message) => {
+    dispatch(setA11yMessage(message));
+  },
+});
+
+export default connect(null, mapDispatchToProps)(Console);

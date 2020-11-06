@@ -57,3 +57,11 @@ export const LOAD_COMMENTS_FAILURE = 'LOAD_BLOGPOSTS_FAILURE';
 export const loadCommentsFailure = () => ({
   type: LOAD_COMMENTS_FAILURE,
 });
+
+//a11y actions
+
+export const SET_A11Y_MESSAGE = 'SET_A11Y_MESSAGE';
+export const setA11yMessage = (message) => ({
+  type: SET_A11Y_MESSAGE,
+  payload: { message },
+});

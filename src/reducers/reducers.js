@@ -1,4 +1,5 @@
 import {
+  SET_A11Y_MESSAGE,
   CREATE_BLOGPOST,
   DELETE_BLOGPOST,
   LOAD_BLOGPOSTS_FAILURE,
@@ -29,6 +30,15 @@ export const blogposts = (state = [], action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case CREATE_BLOGPOST: {
+      const { blogpost } = payload;
+      return state.concat(blogpost);
+    }
+
+    case DELETE_BLOGPOST: {
+      const { blogpost: blogpostToRemove } = payload;
+      return state.filter((blogpost) => blogpost.postid !== blogpostToRemove.postid);
+    }
     case LOAD_BLOGPOSTS_SUCCESS: {
       const { blogposts } = payload;
       return blogposts;
@@ -81,6 +91,23 @@ export const comments = (state = [], action) => {
       return state;
     }
 
+    default:
+      return state;
+  }
+};
+
+//a11y reducers
+
+export const a11yMessage = (state = [], action) => {
+  const { type, payload } = action;
+  console.log('I got hit');
+  console.log(type);
+  console.log(payload);
+
+  switch (type) {
+    case SET_A11Y_MESSAGE:
+      console.log('setmessage');
+      return { a11yMessage: payload.message };
     default:
       return state;
   }

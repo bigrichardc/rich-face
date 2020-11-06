@@ -1,0 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+
+.blogpost-form__container {
+  display: block;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  /*flex-direction: column;*/
+  width: 100%;
+  border: solid white;
+}
