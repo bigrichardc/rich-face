@@ -42,6 +42,7 @@ class CommentForm extends React.Component {
             .filter((comment) => comment.postid === this.props.postId)
             .map((comment, id) => (
               <Comment
+                key={comment.commentid}
                 postId={this.props.postid}
                 postAuthor={comment.commentauthor}
                 postContent={comment.commenttext}

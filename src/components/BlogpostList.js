@@ -9,20 +9,24 @@ class BlogpostList extends React.Component {
       <div className="blogpostlist__container">
         <h2>Blog posts</h2>
         <table className="blogpostlist__table">
-          <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Delete</th>
-          </tr>
-          {this.props.blogposts.map((blogpost) => (
+          <thead>
             <tr>
-              <td>{blogpost.posttitle}</td>
-              <td>{blogpost.username}</td>
-              <td>
-                <button onClick={() => this.props.onDeletePressed(blogpost)}>Do something</button>
-              </td>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Delete</th>
             </tr>
-          ))}
+          </thead>
+          <tbody>
+            {this.props.blogposts.map((blogpost) => (
+              <tr>
+                <td>{blogpost.posttitle}</td>
+                <td>{blogpost.username}</td>
+                <td>
+                  <button onClick={() => this.props.onDeletePressed(blogpost)}>Do something</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     );
