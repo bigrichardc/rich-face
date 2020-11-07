@@ -4,7 +4,7 @@ import { setA11yMessage } from './actions/actions';
 
 class About extends Component {
   componentDidMount() {
-    this.props.setAria('Navigated to console page');
+    this.props.setAria('Navigated to about page');
   }
   render() {
     return (

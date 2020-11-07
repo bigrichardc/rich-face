@@ -9,12 +9,15 @@ class Main extends Component {
   render() {
     return (
       <div>
+        <A11yMessage />
         <HashRouter>
           <div>
             <h1>Simple SPA</h1>
             <ul className="header">
               <li>
-                <NavLink to="/">Home</NavLink>
+                <NavLink exact to="/">
+                  Home
+                </NavLink>
               </li>
               <li>
                 <NavLink to="/about">About</NavLink>

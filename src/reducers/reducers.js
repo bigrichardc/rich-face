@@ -107,7 +107,7 @@ export const a11yMessage = (state = [], action) => {
   switch (type) {
     case SET_A11Y_MESSAGE:
       console.log('setmessage');
-      return { a11yMessage: payload.message };
+      return payload.message;
     default:
       return state;
   }
