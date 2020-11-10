@@ -10,9 +10,15 @@ import {
   loadCommentsSuccess,
 } from '../actions/actions';
 
-const apiUrl =
-  process.env.RICHFACE_API_URL !== undefined ? process.env.RICHFACE_API_URL : 'http://localhost/';
-const testUrl = process.env.RICHFACE_API_URL;
+const aws = require('aws-sdk');
+
+let s3 = new aws.S3({
+  apiUrl: process.env.RICHFACE_API_URL,
+});
+
+//const apiUrl =
+//  process.env.RICHFACE_API_URL !== undefined ? process.env.RICHFACE_API_URL : 'http://localhost/';
+
 //for testing
 export const displayAlert = (text) => () => {
   alert(`Err: ${text}`);
@@ -21,7 +27,9 @@ export const displayAlert = (text) => () => {
 //settting async as will be grabbing data from external source at some point
 export const loadBlogposts = () => async (dispatch, getState) => {
   try {
-    console.log('api url: ' + testUrl);
+    console.log('api url: ');
+    console.log(s3);
+
     dispatch(loadBlogpostsInProgress());
     fetch('http://localhost:4000/posts')
       .then((res) => res.json())
