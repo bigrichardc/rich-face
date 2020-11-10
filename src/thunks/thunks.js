@@ -10,6 +10,9 @@ import {
   loadCommentsSuccess,
 } from '../actions/actions';
 
+const apiUrl =
+  process.env.RICHFACE_API_URL !== undefined ? process.env.RICHFACE_API_URL : 'http://localhost/';
+
 //for testing
 export const displayAlert = (text) => () => {
   alert(`Err: ${text}`);
@@ -18,6 +21,7 @@ export const displayAlert = (text) => () => {
 //settting async as will be grabbing data from external source at some point
 export const loadBlogposts = () => async (dispatch, getState) => {
   try {
+    console.log('api url: ' + apiUrl);
     dispatch(loadBlogpostsInProgress());
     fetch('http://localhost:4000/posts')
       .then((res) => res.json())
