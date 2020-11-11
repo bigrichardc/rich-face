@@ -22,7 +22,7 @@ export const displayAlert = (text) => () => {
 export const loadBlogposts = () => async (dispatch, getState) => {
   try {
     console.log('api url: ');
-    console.log(process.env.RICHFACE_API_URL);
+    console.log(apiUrl);
     console.log('nodeenv:');
     console.log(process.env.NODE_ENV);
 
