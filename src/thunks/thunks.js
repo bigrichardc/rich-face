@@ -34,6 +34,7 @@ export const loadBlogposts = () => async (dispatch, getState) => {
         dispatch(loadBlogpostsSuccess(blogposts));
       });
   } catch (err) {
+    console.log(err);
     dispatch(loadBlogpostsFailure());
     dispatch(displayAlert(err));
   }
