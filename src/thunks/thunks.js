@@ -23,7 +23,7 @@ export const loadBlogposts = () => async (dispatch, getState) => {
   try {
     dispatch(loadBlogpostsInProgress());
     const fetchUrl = apiUrl + 'posts';
-    fetch(fetchUrl)
+    fetch('https://rich-face-api/posts')
       .then((res) => res.json())
       .then((res) => {
         if (res.error) {
