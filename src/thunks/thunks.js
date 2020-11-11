@@ -22,7 +22,8 @@ export const displayAlert = (text) => () => {
 export const loadBlogposts = () => async (dispatch, getState) => {
   try {
     dispatch(loadBlogpostsInProgress());
-    fetch(apiUrl + 'posts')
+    const fetchUrl = apiUrl + 'posts';
+    fetch(fetchUrl)
       .then((res) => res.json())
       .then((res) => {
         if (res.error) {
