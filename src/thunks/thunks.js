@@ -10,8 +10,8 @@ import {
   loadCommentsSuccess,
 } from '../actions/actions';
 
-//const apiUrl =
-//  process.env.RICHFACE_API_URL !== undefined ? process.env.RICHFACE_API_URL : 'http://localhost/';
+const apiUrl =
+  process.env.NODE_ENV === 'production' ? 'http://rich-face-api/' : 'http://localhost/';
 
 //for testing
 export const displayAlert = (text) => () => {
