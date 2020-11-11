@@ -11,7 +11,7 @@ import {
 } from '../actions/actions';
 
 const apiUrl =
-  process.env.NODE_ENV === 'production' ? 'http://rich-face-api/' : 'http://localhost/';
+  process.env.NODE_ENV === 'production' ? 'http://rich-face-api/' : 'http://localhost:4000/';
 
 //for testing
 export const displayAlert = (text) => () => {
@@ -21,13 +21,8 @@ export const displayAlert = (text) => () => {
 //settting async as will be grabbing data from external source at some point
 export const loadBlogposts = () => async (dispatch, getState) => {
   try {
-    console.log('api url: ');
-    console.log(apiUrl);
-    console.log('nodeenv:');
-    console.log(process.env.NODE_ENV);
-
     dispatch(loadBlogpostsInProgress());
-    fetch('http://localhost:4000/posts')
+    fetch(apiUrl + 'posts')
       .then((res) => res.json())
       .then((res) => {
         if (res.error) {
@@ -45,7 +40,7 @@ export const loadBlogposts = () => async (dispatch, getState) => {
 export const addBlogpost = (blogpost) => async (dispatch) => {
   try {
     const body = JSON.stringify({ blogpost });
-    const response = await fetch('http://localhost:4000/posts', {
+    const response = await fetch(apiUrl + 'posts', {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -64,7 +59,7 @@ export const addBlogpost = (blogpost) => async (dispatch) => {
 
 export const deleteBlogpostThunk = (blogpost) => async (dispatch) => {
   try {
-    const deleteUrl = 'http://localhost:4000/posts/' + blogpost.postid;
+    const deleteUrl = apiUrl + 'posts/' + blogpost.postid;
     const response = await fetch(deleteUrl, {
       headers: {
         'Content-Type': 'application/json',
@@ -85,7 +80,7 @@ export const deleteBlogpostThunk = (blogpost) => async (dispatch) => {
 export const loadComments = (postId) => async (dispatch, getState) => {
   try {
     dispatch(loadCommentsInProgress());
-    fetch(`http://localhost:4000/comments`)
+    fetch(apiUrl + 'comments')
       .then((res) => res.json())
       .then((res) => {
         if (res.error) {
@@ -103,7 +98,7 @@ export const loadComments = (postId) => async (dispatch, getState) => {
 export const addPostComment = (comment) => async (dispatch) => {
   try {
     const body = JSON.stringify({ comment });
-    const response = await fetch('http://localhost:4000/comments', {
+    const response = await fetch(apiUrl + 'comments', {
       headers: {
         'Content-Type': 'application/json',
       },
