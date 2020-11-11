@@ -11,7 +11,9 @@ import {
 } from '../actions/actions';
 
 const apiUrl =
-  process.env.NODE_ENV === 'production' ? 'https://rich-face-api/' : 'http://localhost:4000/';
+  process.env.NODE_ENV === 'production'
+    ? 'https://http://rich-face-api.herokuapp.com/'
+    : 'http://localhost:4000/';
 
 //for testing
 export const displayAlert = (text) => () => {
@@ -22,8 +24,7 @@ export const displayAlert = (text) => () => {
 export const loadBlogposts = () => async (dispatch, getState) => {
   try {
     dispatch(loadBlogpostsInProgress());
-    const fetchUrl = apiUrl + 'posts';
-    fetch('https://rich-face-api/posts')
+    fetch(apiUrl + 'posts')
       .then((res) => res.json())
       .then((res) => {
         if (res.error) {
