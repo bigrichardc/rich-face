@@ -12,7 +12,7 @@ import {
 
 const apiUrl =
   process.env.NODE_ENV === 'production'
-    ? 'https://http://rich-face-api.herokuapp.com/'
+    ? 'https://rich-face-api.herokuapp.com/'
     : 'http://localhost:4000/';
 
 //for testing
