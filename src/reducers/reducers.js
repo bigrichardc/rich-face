@@ -100,13 +100,9 @@ export const comments = (state = [], action) => {
 
 export const a11yMessage = (state = [], action) => {
   const { type, payload } = action;
-  console.log('I got hit');
-  console.log(type);
-  console.log(payload);
 
   switch (type) {
     case SET_A11Y_MESSAGE:
-      console.log('setmessage');
       return payload.message;
     default:
       return state;

@@ -3,6 +3,5 @@ const routes = (app) => {
     res.send('Server is alive');
   });
 };
-console.log('I ran');
 
 export default routes;

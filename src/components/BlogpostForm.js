@@ -27,7 +27,6 @@ class BlogpostForm extends React.Component {
       postimage: '',
     };
 
-    console.log(newBlogpost);
     this.props.onCreatePressed(newBlogpost);
     this.setState({
       newBlogpostTitle: '',

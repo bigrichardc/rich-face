@@ -11,7 +11,7 @@ import {
 } from '../actions/actions';
 
 const apiUrl =
-  process.env.NODE_ENV === 'production' ? 'http://rich-face-api/' : 'http://localhost:4000/';
+  process.env.NODE_ENV === 'production' ? 'https://rich-face-api/' : 'http://localhost:4000/';
 
 //for testing
 export const displayAlert = (text) => () => {
@@ -47,12 +47,9 @@ export const addBlogpost = (blogpost) => async (dispatch) => {
       method: 'post',
       body,
     });
-    console.log(body);
     const result = await response.body;
-    console.log(result);
     dispatch(createBlogpost(blogpost));
   } catch (err) {
-    console.log(err);
     dispatch(displayAlert(err));
   }
 };
@@ -67,10 +64,8 @@ export const deleteBlogpostThunk = (blogpost) => async (dispatch) => {
       method: 'delete',
     });
     const result = await response.body;
-    console.log(result);
     dispatch(deleteBlogpost(blogpost));
   } catch (err) {
-    console.log(err);
     dispatch(displayAlert(err));
   }
 };
@@ -106,10 +101,8 @@ export const addPostComment = (comment) => async (dispatch) => {
       body,
     });
     const result = await response.body;
-    console.log(result);
     dispatch(createComment(comment));
   } catch (err) {
-    console.log(err);
     dispatch(displayAlert(err));
   }
 };

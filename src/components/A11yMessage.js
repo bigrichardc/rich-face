@@ -14,7 +14,6 @@ class A11yMessage extends Component {
   componentWillReceiveProps(nextProps) {
     //We delay the setting and clearing of the accessible route transition
     //text to ensure that the screen readers don't miss it.
-    console.log(nextProps);
     if (nextProps.a11yMessage) {
       setTimeout(() => {
         this.setState({
@@ -31,7 +30,6 @@ class A11yMessage extends Component {
 
   render() {
     const { currentA11yMessage } = this.state;
-    console.log(this.props);
     return (
       <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
         {currentA11yMessage ? <span>{currentA11yMessage}</span> : ''}
