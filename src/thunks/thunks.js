@@ -23,6 +23,8 @@ export const loadBlogposts = () => async (dispatch, getState) => {
   try {
     console.log('api url: ');
     console.log(process.env.RICHFACE_API_URL);
+    console.log('nodeenv:');
+    console.log(process.env.NODE_ENV);
 
     dispatch(loadBlogpostsInProgress());
     fetch('http://localhost:4000/posts')
