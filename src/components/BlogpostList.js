@@ -18,7 +18,7 @@ class BlogpostList extends React.Component {
           </thead>
           <tbody>
             {this.props.blogposts.map((blogpost) => (
-              <tr>
+              <tr key={blogpost.postid}>
                 <td>{blogpost.posttitle}</td>
                 <td>{blogpost.username}</td>
                 <td>
