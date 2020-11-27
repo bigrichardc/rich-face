@@ -3,22 +3,26 @@ import { connect } from 'react-redux';
 import BlogpostForm from './components/BlogpostForm';
 import BlogpostList from './components/BlogpostList';
 import { setA11yMessage } from './actions/actions';
-//import { useAuth0 } from '@auth0/auth0-react';
 
 const Console = (props) => {
   const { setAria } = props;
-  const { login, isAuthenticated } = props.auth;
-  //const { isAuthenticated } = props;
-  //const { user, isAuthenticated, error, getAccessTokenSilently } = useAuth0();
-  const [userMetadata, setUserMetadata] = useState(null);
+  const { getProfile, isAuthenticated, login } = props.auth;
+  const [state, setState] = useState({
+    profile: null,
+    error: '',
+  });
+  const { profile, error } = state;
+
   useEffect(() => {
     setAria('Navigated to console page');
-    console.log(isAuthenticated());
+    getProfile((profile, error) => setState({ profile, error }));
   }, []);
 
-  //if (error) {
-  //return <div>Oops... {error.message}</div>;
-  //}
+  if (error) {
+    return <div>Oops... {error.message}</div>;
+  }
+
+  if (!profile) return null;
 
   if (!isAuthenticated()) {
     return (
@@ -28,14 +32,15 @@ const Console = (props) => {
       </div>
     );
   }
-
   return (
-    //isAuthenticated &&
-    <div>
-      <h1>Hello user.name</h1>
+    <>
+      <h1>Profile</h1>
+      <p>{profile.name}</p>
+      <img src={profile.picture} />
+      <pre>{JSON.stringify(profile, null, 2)}</pre>
       <BlogpostForm />
       <BlogpostList />
-    </div>
+    </>
   );
 };
 
