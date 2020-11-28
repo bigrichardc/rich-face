@@ -13,6 +13,9 @@ export default class Auth {
       responseType: 'token id_token',
       scope: this.requestedScopes,
     });
+    console.log(process.env.REACT_APP_AUTH0_DOMAIN);
+    console.log(process.env.REACT_APP_AUTH0_CLIENT_ID);
+    console.log(process.env.REACT_APP_AUTH0_CALLBACK_URL);
   }
 
   login = () => {
