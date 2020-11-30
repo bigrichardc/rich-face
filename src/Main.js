@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Route, NavLink, Redirect } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faHome, faInfoCircle, faLaptopCode } from '@fortawesome/free-solid-svg-icons';
 import Home from './Home';
 import About from './About';
 import Callback from './Callback';
@@ -15,7 +15,7 @@ const Main = (props) => {
   const [auth] = useState(new Auth(props.history));
   const { isAuthenticated } = auth;
 
-  const alertTest = () => {
+  const openMenu = () => {
     var x = document.getElementById('richfaceTopnav');
     if (x.className === 'topnav') {
       x.className += ' responsive';
@@ -25,19 +25,25 @@ const Main = (props) => {
   };
 
   return (
-    <div>
+    <div className="main">
       <A11yMessage />
       <img className="topimage" src="/Rich-Face-Logo-i--250.png" alt="" />
       <div className="topnav" id="richfaceTopnav">
         <NavLink exact to="/">
-          Home
+          Home <FontAwesomeIcon icon={faHome} />
         </NavLink>
-        <NavLink to="/about">About</NavLink>
-        {isAuthenticated() && <NavLink to="/console">Console</NavLink>}
+        <NavLink to="/about">
+          About <FontAwesomeIcon icon={faInfoCircle} />
+        </NavLink>
+        {isAuthenticated() && (
+          <NavLink to="/console">
+            Console <FontAwesomeIcon icon={faLaptopCode} />
+          </NavLink>
+        )}
         {!isAuthenticated() && <LoginButton auth={auth} {...props} />}
         {isAuthenticated() && <LogoutButton auth={auth} {...props} />}
         <a href="javascript:void(0);" className="icon">
-          <FontAwesomeIcon icon={faBars} onClick={alertTest} />
+          <FontAwesomeIcon icon={faBars} onClick={openMenu} />
         </a>
       </div>
 
