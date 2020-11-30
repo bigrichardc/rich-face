@@ -1,0 +1,8 @@
+.btn {
+  border: none;
+  background-color: inherit;
+  font-size: medium;
+  cursor: pointer;
+  display: inline-block;
+  color: #fff;
+}
