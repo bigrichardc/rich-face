@@ -36,7 +36,7 @@ export default class Auth {
   };
 
   setSession = (authResult) => {
-    const expiresAt = JSON.stringify(authResult.expiresIn + 1000 + new Date().getTime());
+    const expiresAt = JSON.stringify(authResult.expiresIn + 360000 + new Date().getTime());
 
     //set scopes as the scopes from the user or the existing scopes
     const scopes = authResult.scope || this.requestedScopes || '';

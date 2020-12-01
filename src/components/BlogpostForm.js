@@ -18,11 +18,10 @@ class BlogpostForm extends React.Component {
 
   submit = (e) => {
     e.preventDefault();
-
     const newBlogpostDate = new Date(Date.now()).toLocaleDateString();
     const newBlogpost = {
       posttitle: this.state.newBlogpostTitle,
-      username: 'Richard',
+      username: this.props.auth.userProfile.nickname,
       posttext: this.state.newBlogpost,
       postimage: '',
     };

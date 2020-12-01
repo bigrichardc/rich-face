@@ -49,9 +49,12 @@ export const addBlogpost = (blogpost) => async (dispatch) => {
       },
       method: 'post',
       body,
-    });
-    const result = await response.body;
-    dispatch(createBlogpost(blogpost));
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        blogpost.postid = res.postid;
+        dispatch(createBlogpost(blogpost));
+      });
   } catch (err) {
     dispatch(displayAlert(err));
   }

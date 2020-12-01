@@ -3,7 +3,7 @@
 .blogpost-form__container {
   display: block;
   font-family: 'Poppins', Arial, Helvetica, sans-serif;
-  /*flex-direction: column;*/
+  padding: 2%;
   width: 100%;
   border: solid white;
 }

@@ -32,13 +32,25 @@ const Console = (props) => {
       </div>
     );
   }
+
+  const roles = profile['https://localhost:3000/roles'];
+
+  if (roles.indexOf('admin') === -1) {
+    return (
+      <div>
+        <h1>You do not have administator rights</h1>
+      </div>
+    );
+  }
+
   return (
     <>
       <h1>Profile</h1>
       <p>{profile.name}</p>
       <img src={profile.picture} />
       <pre>{JSON.stringify(profile, null, 2)}</pre>
-      <BlogpostForm />
+
+      <BlogpostForm auth={props.auth} {...props} />
       <BlogpostList />
     </>
   );

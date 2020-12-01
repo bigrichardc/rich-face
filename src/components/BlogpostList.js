@@ -13,6 +13,7 @@ class BlogpostList extends React.Component {
             <tr>
               <th>Title</th>
               <th>Author</th>
+              <th>Date</th>
               <th>Delete</th>
             </tr>
           </thead>
@@ -22,7 +23,12 @@ class BlogpostList extends React.Component {
                 <td>{blogpost.posttitle}</td>
                 <td>{blogpost.username}</td>
                 <td>
-                  <button onClick={() => this.props.onDeletePressed(blogpost)}>Do something</button>
+                  {blogpost.postdate && <>{new Date(blogpost.postdate).toLocaleDateString()}</>}
+                </td>
+                <td>
+                  {blogpost.postid && (
+                    <button onClick={() => this.props.onDeletePressed(blogpost)}>Delete</button>
+                  )}
                 </td>
               </tr>
             ))}
