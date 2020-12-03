@@ -10,6 +10,7 @@ import Auth from './auth/Auth';
 import A11yMessage from './components/A11yMessage';
 import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
+import UpdateForm from './components/UpdateForm';
 
 const Main = (props) => {
   const [auth] = useState(new Auth(props.history));
@@ -58,6 +59,7 @@ const Main = (props) => {
             }
           />
           <Route path="/callback" render={(props) => <Callback auth={auth} {...props} />} />
+          <Route path="/update/:postid" render={(props) => <UpdateForm {...props} />} />
         </div>
       </div>
     </div>

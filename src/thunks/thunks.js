@@ -76,6 +76,27 @@ export const deleteBlogpostThunk = (blogpost) => async (dispatch) => {
   }
 };
 
+export const updateBlogpost = (blogpost) => async (dispatch) => {
+  try {
+    const body = JSON.stringify({ blogpost });
+    const response = await fetch(apiUrl + 'posts/' + blogpost.postid, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'put',
+      body,
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log('maybe worked...');
+        //dispatch(createBlogpost(blogpost));
+      });
+  } catch (err) {
+    dispatch(displayAlert(err));
+  }
+  console.log('do something');
+};
+
 //commentThunks
 
 export const loadComments = (postId) => async (dispatch, getState) => {

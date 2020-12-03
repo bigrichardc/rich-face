@@ -11,11 +11,11 @@ function PostImage({ image }) {
   return <img alt="" className="social-card__post-image" src={image} />;
 }
 
-const SocialCard = ({ postId, postTitle, postText, userName, postImage }) => {
+const SocialCard = ({ postId, postTitle, postText, userName, postImage, postDate }) => {
   return (
     <div className="social-card">
       <h2 className="social-card__title">{postTitle}</h2>
-      <p>12/06/1971 10.23pm</p>
+      {postDate && <p>{new Date(postDate).toLocaleDateString()}</p>}
       <div className="social-card__user-post">
         <div className="social-card__user-details">
           <img alt="" src="/src/data/avatar.png" className="social-card__avatar-image" />
@@ -56,6 +56,7 @@ const SocialCards = ({
           postText={post.posttext}
           userName={post.username}
           postImage={post.postimage}
+          postDate={post.postdate}
         />
       ))}
     </div>

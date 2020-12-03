@@ -14,7 +14,7 @@ class BlogpostList extends React.Component {
               <th>Title</th>
               <th>Author</th>
               <th>Date</th>
-              <th>Delete</th>
+              <th>Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -27,7 +27,10 @@ class BlogpostList extends React.Component {
                 </td>
                 <td>
                   {blogpost.postid && (
-                    <button onClick={() => this.props.onDeletePressed(blogpost)}>Delete</button>
+                    <>
+                      <button onClick={() => alert('updated')}>Update</button>
+                      <button onClick={() => this.props.onDeletePressed(blogpost)}>Delete</button>
+                    </>
                   )}
                 </td>
               </tr>
